@@ -3,8 +3,10 @@ const express = require('express');
 const bodyParser = require('body-parser')
 /*this is how we initialise our express application*/
 const app = express();
+
 /*Server*/
 const server = require('http').Server(app);
+const PORT=process.env.PORT || 8080;
 /* importing socket.io */
 const io = require('socket.io')(server)
 /*importing uuid into this server.js */
@@ -80,4 +82,6 @@ io.on('connection', socket => {
         
     });
 });
-server.listen(8080);
+server.listen(PORT, () => {
+    console.log(`server started on port ${PORT}`);
+});
